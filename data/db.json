@@ -1,153 +1,153 @@
 {
-  "poker tournament": [
+  "pokerTournaments": [
     {
       "id": 1,
       "name": "Famous Fives",
-      "players-max": 9,
+      "playersMax": 9,
       "description": "The Famous Fives is THE tournament for Deep Turbo fans. You start with a lot of chips, but the blinds go up fast! An ideal playground for fans of action at the poker table.",
       "ante": false,
       "levels": "20min",
-      "starting-stack": 500000,
+      "startingStack": 500000,
       "image": "https://pokahnights.com/wp-content/uploads/2023/06/famous-fivess.jpg"
     },
     {
       "id": 2,
       "name": "Sweet sixes",
-      "players-max": 9,
+      "playersMax": 9,
       "description": "There's nothing like a turbo tournament to try to make a deep run without spending hours on it!",
       "ante": false,
       "levels": "10min",
-      "starting-stack": 60000,
+      "startingStack": 60000,
       "image": "https://pokahnights.com/wp-content/uploads/2023/04/sweet-sixes.jpg"
     },
     {
       "id": 3,
       "name": "Lucky sevens",
-      "players-max": 7,
+      "playersMax": 7,
       "description": "This tournament is very popular amongst players and is played with 7 players at the table. So you will have to play more hands to avoid the blinds catching up with you!",
       "ante": false,
       "levels": "15min",
-      "starting-stack": 70000,
+      "startingStack": 70000,
       "image": "https://pokahnights.com/wp-content/uploads/2023/04/Lucky-Sevens.jpg"
     },
     {
       "id": 4,
       "name": "Crazy eights",
-      "players-max": 8,
+      "playersMax": 8,
       "description": "The Crazy Eights lives up to its name: an affordable buy-in, large fields and an awesome atmosphere ... everything you need for a great night!",
       "ante": true,
       "levels": "20min",
-      "starting-stack": 80000,
+      "startingStack": 80000,
       "image": "https://pokahnights.com/wp-content/uploads/2023/04/crazy-eights.jpg"
     },
     {
       "id": 5,
       "name": "Pokah Nines",
-      "players-max": 9,
+      "playersMax": 9,
       "description": "Back to the basics, as they say! This Daily, which carries the house name, is nothing more than a good old 9-max.",
       "ante": false,
       "levels": "15min",
-      "starting-stack": 90000,
+      "startingStack": 90000,
       "image": "https://pokahnights.com/wp-content/uploads/2023/04/pokah-nines.jpg"
     },
     {
       "id": 6,
       "name": "Serious Tens",
-      "players-max": 9,
+      "playersMax": 9,
       "description": "A big stack of chips and turbo levels: that's the Serious Tens formula! There is no doubt about it, if you like action, this is the tournament for you!",
       "ante": false,
       "levels": "12min",
-      "starting-stack": 10000,
+      "startingStack": 10000,
       "image": "https://pokahnights.com/wp-content/uploads/2023/04/serious-tens-1.jpg"
     },
     {
       "id": 7,
       "name": "The Queen's Millions",
-      "players-max": 9,
+      "playersMax": 9,
       "description": "With its ultra-deep structure, the Millions is undoubtedly the most prestigious. Every Saturday, the winner of this tournament is guaranteed to walk away with a very nice prize... Will you be next?",
       "ante": true,
       "levels": "20min",
-      "starting-stack": 1000000,
+      "startingStack": 1000000,
       "image": "https://pokahnights.com/wp-content/uploads/2023/04/the-queens-millions.jpg"
     },
     {
       "id": 8,
       "name": "Shooting Kings",
-      "players-max": 9,
+      "playersMax": 9,
       "description": "Fancy hunting bounties? Then our Shooting Kings is really for you! Take out as many opponents as possible and go home with a big prize.",
       "ante": false,
       "levels": "15min",
-      "starting-stack": 50000,
+      "startingStack": 50000,
       "image": "https://pokahnights.com/wp-content/uploads/2023/04/shooting-kings.jpg"
     },
     {
       "id": 9,
       "name": "Tag Team",
-      "players-max": 5,
+      "playersMax": 5,
       "description": "This tournament is played in teams of 2. The principle is simple: one chip stack per team! One player plays the hand preflop and on the turn, while the second player makes the decisions on the flop and river. ",
       "ante": false,
       "levels": "20min",
-      "starting-stack": 80000,
+      "startingStack": 80000,
       "image": "https://moneymakerpt.com/cdn/shop/articles/Event_24_Winner_720x.jpg?v=1699280184"
     },
     {
       "id": 10,
       "name": "WSOP Main Event",
-      "players-max": 9,
+      "playersMax": 9,
       "description": "This tournament is played in teams of 2. The principle is simple: one chip stack per team! One player plays the hand preflop and on the turn, while the second player makes the decisions on the flop and river. ",
       "ante": true,
       "levels": "120min",
-      "starting-stack": 60000,
+      "startingStack": 60000,
       "image": "https://moneymakerpt.com/cdn/shop/articles/Event_24_Winner_720x.jpg?v=1699280184"
     },
     {
       "id": 11,
       "name": "WPT Main Event",
-      "players-max": 9,
+      "playersMax": 9,
       "description": "The flagship event of the World Poker Tour, attracting top players from around the globe to compete for the coveted WPT title and a massive prize pool.",
       "ante": true,
       "levels": "60min",
-      "starting-stack": 100000,
+      "startingStack": 100000,
       "image": "https://live.staticflickr.com/65535/52576978440_394b31c567_k.jpg"
     },
     {
       "id": 12,
       "name": "FPS Main Event - 40 Minute Levels",
-      "players-max": 8,
+      "playersMax": 8,
       "description": "Paris. The world’s most romantic city. Perfect for honeymoons, getaways…and live poker.",
       "ante": true,
       "levels": "40min",
-      "starting-stack": 30000,
+      "startingStack": 30000,
       "image": "https://s.pnimg.net/_qzrKliFuIADxsxFNelg6UaL-LW_yx3k-16xqP5YmZg/pr:reporting-leading-desktop/aHR0cHM6Ly9wbmlt/Zy5uZXQvbHJlcC8y/MDg1LzQ1L3hiNjdl/YzFjNDExLmpwZw.webp"
     },
     {
       "id": 13,
       "name": "PCA Main Event Qualifier",
-      "players-max": 9,
+      "playersMax": 9,
       "description": "This event makes you able to qualify for the PCA Main Event",
       "ante": true,
       "levels": "20min",
-      "starting-stack": 15000,
+      "startingStack": 15000,
       "image": "https://www.pokerscout.com/wp-content/uploads/2022/12/Pokerstars-PCA-2023.png"
     },
     {
       "id": 14,
       "name": "Assie Millions Main Event",
-      "players-max": 9,
+      "playersMax": 9,
       "description": "The Aussie Millions Main Event is the highlight of the Southern Hemisphere's poker calendar. Held in vibrant Melbourne, it attracts pros and amateurs alike to compete for fame, fortune, and the prestigious Aussie Millions title.",
       "ante": true,
       "levels": "90min",
-      "starting-stack": 30000,
+      "startingStack": 30000,
       "image": "https://poker.com/wp-content/uploads/2020/06/181129-Crown-Melbourne-Gaming-Poker-Green-Chips-748x530-1.jpg"
     },
     {
       "id": 15,
       "name": "PGT Heads-Up Showdown",
-      "players-max": 2,
+      "playersMax": 2,
       "description": "\nThe PGT Heads Up Showdown is an electrifying one-on-one battle of wits, where players go head-to-head to showcase their poker prowess. With intense strategy and high-stakes action, it's the ultimate test of skill and nerve on the poker circuit.",
       "ante": false,
       "levels": "20min",
-      "starting-stack": 200000,
+      "startingStack": 200000,
       "image": "https://poker.com/wp-content/uploads/2020/06/181129-Crown-Melbourne-Gaming-Poker-Green-Chips-748x530-1.jpg"
     }
   ],
@@ -156,111 +156,111 @@
       "id": 1,
       "name": "Daniel Negraunu",
       "nickname": "Kid Poker",
-      "live earnings": 52628149.50,
-      "date of birth": "1974-07-26",
-      "WSOP bracelets": 6,
+      "liveEarnings": 52628149.50,
+      "dateOfBirth": "1974-07-26",
+      "WsopBracelets": 6,
       "image": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Daniel_Negreanu_2007.jpg?20220308215854",
       "married": true,
-      "pokerId": 5
+      "pokerTournamentId": 5
     },
     {
       "id": 2,
       "name": "Phil Hellmuth",
       "nickname": "The Poker Brat",
-      "live earnings": 26735185.42,
-      "date of birth": "1964-07-16",
-      "WSOP bracelets": 17,
+      "liveEarnings": 26735185.42,
+      "dateOfBirth": "1964-07-16",
+      "WsopBracelets": 17,
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Phil_Hellmuth_2021.jpg/330px-Phil_Hellmuth_2021.jpg",
       "married": true,
-      "pokerId": 5
+      "pokerTournamentId": 5
     },
     {
       "id": 3,
       "name": "Doyle Brunson",
       "nickname": "Texas Dolly",
-      "live earnings": 6176737.63,
-      "date of birth": "1933-05-14",
-      "WSOP bracelets": 10,
+      "liveEarnings": 6176737.63,
+      "dateOfBirth": "1933-05-14",
+      "WsopBracelets": 10,
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Doyle_Brunson.jpg/330px-Doyle_Brunson.jpg",
       "married": true,
-      "pokerId": 3
+      "pokerTournamentId": 3
     },
     {
       "id": 4,
       "name": "Phil Ivey",
       "nickname": "Tiger Woods of Poker",
-      "live earnings": 42556045.65,
-      "date of birth": "1977-02-01",
-      "WSOP bracelets": 10,
+      "liveEarnings": 42556045.65,
+      "dateOfBirth": "1977-02-01",
+      "WsopBracelets": 10,
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Phil_Ivey_%282009_WSOP%29.jpg/330px-Phil_Ivey_%282009_WSOP%29.jpg",
       "married": false,
-      "pokerId": 6
+      "pokerTournamentId": 6
     },
     {
       "id": 5,
       "name": "Erik Seidel",
       "nickname": "Sly, Seiborg",
-      "live earnings": 47515285.12,
-      "date of birth": "1959-11-06",
-      "WSOP bracelets": 10,
+      "liveEarnings": 47515285.12,
+      "dateOfBirth": "1959-11-06",
+      "WsopBracelets": 10,
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Erik_Seidel_2018.jpg/330px-Erik_Seidel_2018.jpg",
       "married": true,
-      "pokerId": 7
+      "pokerTournamentId": 7
     },
     {
       "id": 6,
       "name": "Jason Mercier",
       "nickname": "Treysfull21",
-      "live earnings": 20696578.73,
-      "date of birth": "1986-11-12",
-      "WSOP bracelets": 6,
+      "liveEarnings": 20696578.73,
+      "dateOfBirth": "1986-11-12",
+      "WsopBracelets": 6,
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSG_vWhDrCPW89YHFvsuHSW5Ui5WJgey1wSFw&s",
       "married": false,
-      "pokerId": 9
+      "pokerTournamentId": 9
     },
     {
       "id": 7,
       "name": "Barry Greenstein",
       "nickname": "The Robin Hood of Poker",
-      "live earnings": 8612332.61,
-      "date of birth": "1954-12-30",
-      "WSOP bracelets": 3,
+      "liveEarnings": 8612332.61,
+      "dateOfBirth": "1954-12-30",
+      "WsopBracelets": 3,
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/BarryGreenstein.jpg/330px-BarryGreenstein.jpg",
       "married": true,
-      "pokerId": 10
+      "pokerTournamentId": 10
     },
     {
       "id": 8,
       "name": "Phil Laak",
       "nickname": "The Unabomber",
-      "live earnings": 3909419.98,
-      "date of birth": "1972-09-08",
-      "WSOP bracelets": 1,
+      "liveEarnings": 3909419.98,
+      "dateOfBirth": "1972-09-08",
+      "WsopBracelets": 1,
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Phil_The_Unabomber_Laak.jpg/330px-Phil_The_Unabomber_Laak.jpg",
       "married": true,
-      "pokerId": 4
+      "pokerTournamentId": 4
     },
     {
       "id": 9,
       "name": "Antanas Guoga",
       "nickname": "Tony G",
-      "live earnings": 10132105.18,
-      "date of birth": "1973-12-17",
-      "WSOP bracelets": 0,
+      "liveEarnings": 10132105.18,
+      "dateOfBirth": "1973-12-17",
+      "WsopBracelets": 0,
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Tony_G_the_Poker_Player.jpg/399px-Tony_G_the_Poker_Player.jpg",
       "married": false,
-      "pokerId": 1
+      "pokerTournamentId": 1
     },
     {
       "id": 10,
       "name": "Justin Bonomo",
       "nickname": "ZeeJustin",
-      "live earnings": 63405741.43,
-      "date of birth": "1985-09-30",
-      "WSOP bracelets": 0,
+      "liveEarnings": 63405741.43,
+      "dateOfBirth": "1985-09-30",
+      "WsopBracelets": 0,
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Justin_Bonomo_2018.jpg/399px-Justin_Bonomo_2018.jpg",
       "married": false,
-      "pokerId": 12
+      "pokerTournamentId": 12
     }
   ]
 }
