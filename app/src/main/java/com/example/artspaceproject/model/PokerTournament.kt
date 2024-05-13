@@ -4,7 +4,7 @@ import android.media.Image
 
 class PokerTournament(
     val id: Int,
-    val name: String,
+    var name: String,
     val playersMax: Int,
     val description: String,
     val ante: Boolean,
@@ -176,5 +176,5 @@ fun getNumberOfPlayersByTournamentId(tournamentId: Int): Int {
 }
 
 fun getPokerTournamentById(tournamentId: Int): PokerTournament {
-    return getPokerTournaments()[tournamentId];
+    return getPokerTournaments().first() { pokerTournament -> pokerTournament.id == tournamentId };
 }
