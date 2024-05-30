@@ -39,7 +39,9 @@ import androidx.compose.ui.text.input.ImeAction
 import com.example.artspaceproject.model.Player
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
+import androidx.compose.ui.res.stringResource
 import com.example.artspaceproject.model.PokerViewModel
+import com.example.ui2_stefaanvos.R
 
 
 class MainActivity : ComponentActivity() {
@@ -97,18 +99,18 @@ fun PokerPage(modifier: Modifier = Modifier, pokerViewModel: PokerViewModel = Po
                 )
             }
             Text(
-                text = "Max players: ${pokerViewModel.getPokerTournamentById(currentId).playersMax}",
+                text = stringResource(id = R.string.max_players) + pokerViewModel.getPokerTournamentById(currentId).playersMax,
                 fontSize = 18.sp,
                 modifier = Modifier.padding(vertical = 4.dp)
 
             )
             Text(
-                text = "Current players: ${pokerViewModel.getNumberOfPlayersByTournamentId(currentId)}",
+                text = stringResource(id = R.string.current_players) + pokerViewModel.getNumberOfPlayersByTournamentId(currentId),
                 fontSize = 18.sp,
                 modifier = Modifier.padding(vertical = 4.dp)
             )
             Text(
-                text = "Starting stack: " + pokerViewModel.getPokerTournamentById(currentId).startingStack,
+                text = stringResource(id = R.string.starting_stack) + pokerViewModel.getPokerTournamentById(currentId).startingStack,
                 fontSize = 18.sp,
                 modifier = Modifier.padding(vertical = 4.dp)
 
@@ -139,13 +141,13 @@ fun PokerPage(modifier: Modifier = Modifier, pokerViewModel: PokerViewModel = Po
                         nameInput = pokerViewModel.getPokerTournamentById(currentId).name
                     }
                 ) {
-                    Text(text = "Previous")
+                    Text(text = stringResource(id = R.string.previous))
                 }
                 Button(onClick = {
                     pokerTournaments[currentId - 1].name = nameInput
 
                 }) {
-                    Text(text = "Update")
+                    Text(text = stringResource(id = R.string.update))
                 }
                 Button(
                     onClick = {
@@ -157,7 +159,7 @@ fun PokerPage(modifier: Modifier = Modifier, pokerViewModel: PokerViewModel = Po
                         nameInput = pokerViewModel.getPokerTournamentById(currentId).name
                     }
                 ) {
-                    Text(text = "Next")
+                    Text(text = stringResource(id = R.string.next))
                 }
             }
         }
@@ -201,7 +203,7 @@ fun PlayerItem(player: Player) {
     }
 }
 
-@Preview
+@Preview(locale = "nl")
 @Composable
 fun PokerPagePreview() {
     PokerPage()

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">ArtSpaceProject</string>
+    <string name="previous">Previous</string>
+    <string name="update">Update</string>
+    <string name="next">Next</string>
+    <string name="max_players">Max players: </string>
+    <string name="current_players">Current players: </string>
+    <string name="starting_stack">Starting stack: </string>
 </resources>

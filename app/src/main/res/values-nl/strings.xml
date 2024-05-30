@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/values-nl/strings.xml -->
+<resources>
+    <string name="app_name">Kunstruimte Project</string>
+    <string name="previous">Vorige</string>
+    <string name="update">Bijwerken</string>
+    <string name="next">Volgende</string>
+    <string name="max_players">Max spelers:</string>
+    <string name="current_players">Huidige spelers:</string>
+    <string name="starting_stack">Start stack:</string>
+</resources>
