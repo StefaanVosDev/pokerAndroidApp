@@ -143,7 +143,7 @@ class Datasource {
             ),
             PokerTournament(
                 id = 3,
-                name = "Lucky sevens",
+                name = "Lucky sevens long enough for 2 rows",
                 playersMax = 7,
                 description = "This tournament is very popular amongst players and is played with 7 players at the table. So you will have to play more hands to avoid the blinds catching up with you!",
                 ante = false,
