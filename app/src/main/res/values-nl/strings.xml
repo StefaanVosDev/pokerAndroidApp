@@ -6,4 +6,5 @@
     <string name="max_players">Max spelers: </string>
     <string name="current_players">Huidige spelers: </string>
     <string name="starting_stack">Start stack: </string>
+    <string name="enter_name_max_characters">Input naam (Max %1$s karakters)</string>
 </resources>

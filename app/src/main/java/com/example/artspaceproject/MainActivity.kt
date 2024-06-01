@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -40,11 +41,18 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import com.example.artspaceproject.model.Player
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Warning
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.key.onKeyEvent
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -60,7 +68,7 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = MaterialTheme.colorScheme.onBackground
                 ) {
                     PokerPage()
                 }
@@ -97,13 +105,20 @@ fun PokerPage(modifier: Modifier = Modifier, pokerViewModel: PokerViewModel = Po
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.Top
                 ) {
-                    Image(
-                        painter = painterResource(image),
-                        contentDescription = null,
-                        modifier = Modifier
-                            .weight(1f)
-                            .size(250.dp)
-                    )
+                    Column(
+                        modifier = Modifier.padding(start = 16.dp, bottom = 16.dp)
+                    ) {
+                        NameTextField(nameInput, 0.3f, onValueChange = { nameInput = it }, currentId)
+
+                        Image(
+                            painter = painterResource(image),
+                            contentDescription = null,
+                            modifier = Modifier
+                                .weight(1f)
+                                .size(250.dp)
+                        )
+
+                    }
 
                     Column(
                         modifier = Modifier
@@ -111,8 +126,6 @@ fun PokerPage(modifier: Modifier = Modifier, pokerViewModel: PokerViewModel = Po
                             .padding(horizontal = 16.dp)
                     ) {
 
-                        NameTextField(nameInput, onValueChange = { nameInput = it })
-                            
                         TournamentInfoText(pokerViewModel, currentId)
 
                         LazyColumn(modifier = Modifier.weight(1f)) {
@@ -122,8 +135,6 @@ fun PokerPage(modifier: Modifier = Modifier, pokerViewModel: PokerViewModel = Po
                         }
 
                         NavigationButtons(
-                            currentId = currentId,
-                            pokerTournamentsSize = pokerTournaments.size,
                             onPreviousClick = {
                                 currentId =
                                     if (currentId > 1)
@@ -164,7 +175,7 @@ fun PokerPage(modifier: Modifier = Modifier, pokerViewModel: PokerViewModel = Po
                     Spacer(modifier = Modifier.height(8.dp))
 
                     Row {
-                        NameTextField(nameInput, onValueChange = { nameInput = it })
+                        NameTextField(nameInput, 0.8f, onValueChange = { nameInput = it }, currentId)
                     }
 
                     TournamentInfoText(pokerViewModel, currentId)
@@ -181,8 +192,6 @@ fun PokerPage(modifier: Modifier = Modifier, pokerViewModel: PokerViewModel = Po
                     Spacer(Modifier.weight(1f))
 
                     NavigationButtons(
-                        currentId = currentId,
-                        pokerTournamentsSize = pokerTournaments.size,
                         onPreviousClick = {
                             currentId =
                                 if (currentId > 1)
@@ -210,53 +219,78 @@ fun PokerPage(modifier: Modifier = Modifier, pokerViewModel: PokerViewModel = Po
 }
 
 @Composable
-fun NameTextField(nameInput: String, onValueChange: (String) -> Unit) {
+fun NameTextField(nameInput: String, size: Float, onValueChange: (String) -> Unit, currentId: Int) {
+    val isExceeding = remember { mutableStateOf(false) }
+    val maxLength = 25
+
+    LaunchedEffect(currentId)
+    {
+        isExceeding.value = nameInput.length > maxLength
+    }
     TextField(
         keyboardOptions = KeyboardOptions.Default.copy(
             imeAction = ImeAction.Done
         ),
         value = nameInput,
-        onValueChange = onValueChange,
+        onValueChange = {
+            if (it.length <= maxLength) {
+                onValueChange(it)
+                isExceeding.value = false
+            } else {
+                isExceeding.value = true
+            }
+        },
         modifier = Modifier
             .padding(vertical = 8.dp)
-            .fillMaxWidth(0.8f),
+            .fillMaxWidth(size)
+            .background(Color.White),
         textStyle = TextStyle(fontSize = 18.sp),
-        maxLines = 1
+        maxLines = 1,
+        trailingIcon = {
+            if (isExceeding.value) {
+                Icon(Icons.Default.Warning, contentDescription = "Exceeding max length", tint = Color.Red)
+            }
+        },
+        placeholder = {
+            Text(text = stringResource(R.string.enter_name_max_characters, maxLength))
+        },
+        colors = TextFieldDefaults.colors(
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent,
+            disabledIndicatorColor = Color.Transparent
+        )
     )
 }
-
 @Composable
 fun TournamentInfoText(pokerViewModel: PokerViewModel, currentId: Int) {
     Text(
         text = stringResource(id = R.string.max_players) + pokerViewModel.getPokerTournamentById(
             currentId
         ).playersMax,
-        fontSize = 18.sp,
+        style = MaterialTheme.typography.bodyLarge,
         modifier = Modifier.padding(vertical = 4.dp),
-        color = Color.Black
+        color = MaterialTheme.colorScheme.onSurface
     )
     Text(
         text = stringResource(id = R.string.current_players) + pokerViewModel.getNumberOfPlayersByTournamentId(
             currentId
         ),
-        fontSize = 18.sp,
+        style = MaterialTheme.typography.bodyLarge,
         modifier = Modifier.padding(vertical = 4.dp),
-        color = Color.Black
+        color = MaterialTheme.colorScheme.onSurface
     )
    Text(
         text = stringResource(id = R.string.starting_stack) + pokerViewModel.getPokerTournamentById(
             currentId
         ).startingStack,
-        fontSize = 18.sp,
-        modifier = Modifier.padding(vertical = 4.dp),
-        color = Color.Black
+       style = MaterialTheme.typography.bodyLarge,
+       modifier = Modifier.padding(vertical = 4.dp),
+       color = MaterialTheme.colorScheme.onSurface
     )
 }
 
 @Composable
 fun NavigationButtons(
-    currentId: Int,
-    pokerTournamentsSize: Int,
     onPreviousClick: () -> Unit,
     onNextClick: () -> Unit,
     onUpdateClick: () -> Unit
@@ -268,13 +302,22 @@ fun NavigationButtons(
             .padding(vertical = 16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Button(onClick = onPreviousClick) {
+        Button(
+            onClick = onPreviousClick,
+            colors = ButtonDefaults.buttonColors()
+        ) {
             Text(text = stringResource(id = R.string.previous))
         }
-        Button(onClick = onUpdateClick) {
+        Button(
+            onClick = onUpdateClick,
+            colors = ButtonDefaults.buttonColors()
+        ) {
             Text(text = stringResource(id = R.string.update))
         }
-        Button(onClick = onNextClick) {
+        Button(
+            onClick = onNextClick,
+            colors = ButtonDefaults.buttonColors()
+        ) {
             Text(text = stringResource(id = R.string.next))
         }
     }
@@ -288,7 +331,8 @@ fun PlayerItem(player: Player) {
     Card(
         modifier = Modifier
             .padding(8.dp)
-            .fillMaxWidth()
+            .fillMaxWidth(),
+        shape = MaterialTheme.shapes.medium,
     ) {
         Row(
             modifier = Modifier
@@ -337,7 +381,7 @@ fun PokerTopAppBar(modifier: Modifier = Modifier) {
                 Text(
                     text = stringResource(R.string.app_name),
                     style = MaterialTheme.typography.displayMedium,
-                    color = Color.Black
+                    color = MaterialTheme.colorScheme.primary
                 )
             }
         },
