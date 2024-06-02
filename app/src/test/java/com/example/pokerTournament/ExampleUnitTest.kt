@@ -1,4 +1,4 @@
-package com.example.artspaceproject
+package com.example.pokerTournament
 
 import org.junit.Test
 

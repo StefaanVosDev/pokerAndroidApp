@@ -1,4 +1,4 @@
-package com.example.artspaceproject.ui.theme
+package com.example.pokerTournament.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

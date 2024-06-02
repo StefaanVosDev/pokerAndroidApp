@@ -32,7 +32,7 @@
         android:theme="@style/Theme.ArtSpaceProject"
         tools:targetApi="33">
         <activity
-            android:name="com.example.artspaceproject.MainActivity"
+            android:name="com.example.pokerTournament.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.ArtSpaceProject">
             <intent-filter>

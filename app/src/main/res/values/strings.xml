@@ -1,10 +1,23 @@
 <resources>
     <string name="app_name">Pokahnights</string>
-    <string name="previous">Previous</string>
+    <string name="previous">prev</string>
     <string name="update">Update</string>
     <string name="next">Next</string>
     <string name="max_players">Max players: </string>
-    <string name="current_players">Current players: </string>
-    <string name="starting_stack">Starting stack: </string>
     <string name="enter_name_max_characters">Enter name (Max %1$s characters)</string>
+    <string name="create">create</string>
+    <string name="delete">delete</string>
+    <string name="new_tournament">New tournament</string>
+    <string name="name">Name</string>
+    <string name="description">Description</string>
+    <string name="ante">Ante</string>
+    <string name="levels">Levels</string>
+    <string name="starting_stack">Starting stack</string>
+    <string name="current_players">Current players</string>
+    <string name="add">Add</string>
+    <string name="cancel">Cancel</string>
+    <string name="exceeding_max_length">Exceeding max length</string>
+    <string name="rotationy">rotationY</string>
+    <string name="alpha">alpha</string>
+    <string name="add_new_tournament">Add New Tournament</string>
 </resources>
