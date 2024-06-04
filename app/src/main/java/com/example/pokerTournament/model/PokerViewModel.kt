@@ -41,16 +41,7 @@ class PokerViewModel : ViewModel()
 
     fun deletePokerTournament(tournament: PokerTournament) {
         _uiState.update { currentPokerTournaments ->
-            val filteredTournaments = currentPokerTournaments.filterNot { it.pokerTournament.id == tournament.id }
-            val updatedTournaments = filteredTournaments.map { pokerTournamentUiState ->
-                if (pokerTournamentUiState.pokerTournament.id > tournament.id) {
-                    val updatedPokerTournament = pokerTournamentUiState.pokerTournament.copy(id = pokerTournamentUiState.pokerTournament.id - 1)
-                    pokerTournamentUiState.copy(pokerTournament = updatedPokerTournament)
-                } else {
-                    pokerTournamentUiState
-                }
-            }
-            updatedTournaments
+            currentPokerTournaments.filterNot { it.pokerTournament.id == tournament.id }
         }
     }
 
@@ -59,11 +50,60 @@ class PokerViewModel : ViewModel()
     }
 
     fun getPokerTournamentById(tournamentId: Int): PokerTournament {
-        val values = uiState.value
-        val first = values.first() {it.pokerTournament.id == tournamentId}
-        println("first: $first")
-        val element = values.first { it.pokerTournament.id >= tournamentId }
-        println("element: $element")
         return uiState.value.first { it.pokerTournament.id >= tournamentId }.pokerTournament
+    }
+
+    fun toggleExpand(tournamentId: Int) {
+        _uiState.update { currentPokerTournaments ->
+            currentPokerTournaments.map {
+                if (it.pokerTournament.id == tournamentId) {
+                    it.copy(isExpanded = !it.isExpanded)
+                } else {
+                    it
+                }
+            }
+        }
+    }
+
+    fun startEditMode(tournamentId: Int) {
+        _uiState.update { currentPokerTournaments ->
+            currentPokerTournaments.map {
+                if (it.pokerTournament.id == tournamentId) {
+                    it.copy(isEditing = true)
+                } else {
+                    it
+                }
+            }
+        }
+    }
+
+    fun savePokerTournament(pokerTournament: PokerTournament) {
+        _uiState.update { currentPokerTournaments ->
+            currentPokerTournaments.map {
+                if (it.pokerTournament.id == pokerTournament.id) {
+                    PokerTournamentUiState(pokerTournament, false)
+                } else {
+                    it
+                }
+            }
+        }
+    }
+
+    fun findNextId(currentId: Int): Int {
+        val id =  uiState.value.firstOrNull { it.pokerTournament.id > currentId }?.pokerTournament?.id
+        return if (id!=null) {
+            id
+        } else {
+            uiState.value.first().pokerTournament.id
+        }
+    }
+
+    fun findPreviousId(currentId: Int): Int {
+        val newId = uiState.value.lastOrNull { it.pokerTournament.id < currentId }?.pokerTournament?.id
+        return if (newId!=null) {
+            newId
+        } else {
+            uiState.value.last().pokerTournament.id
+        }
     }
 }

@@ -4,5 +4,6 @@ import com.example.pokerTournament.model.PokerTournament
 
 data class PokerTournamentUiState(
     val pokerTournament: PokerTournament,
-    val isEditing: Boolean = false
+    val isEditing: Boolean = false,
+    val isExpanded: Boolean = false
 )

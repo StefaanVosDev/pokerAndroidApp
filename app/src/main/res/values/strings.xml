@@ -3,7 +3,7 @@
     <string name="previous">prev</string>
     <string name="update">Update</string>
     <string name="next">Next</string>
-    <string name="max_players">Max players: </string>
+    <string name="max_players">Max players</string>
     <string name="enter_name_max_characters">Enter name (Max %1$s characters)</string>
     <string name="create">create</string>
     <string name="delete">delete</string>
@@ -20,4 +20,13 @@
     <string name="rotationy">rotationY</string>
     <string name="alpha">alpha</string>
     <string name="add_new_tournament">Add New Tournament</string>
+    <string name="details_poker_tournament">Details Poker Tournament</string>
+    <string name="list_pokertournaments_screen">ListOfPokerTournamentsScreen</string>
+    <string name="details_pokertournaments_screen">DetailsPokerTournamentScreen</string>
+    <string name="pokahnights">Pokahnights</string>
+    <string name="tournament">Tournament</string>
+    <string name="expand_button">Expand button</string>
+    <string name="edit">Edit</string>
+    <string name="add_pokertournament">Add PokerTournament</string>
+    <string name="edit_pokertournament">Edit PokerTournament</string>
 </resources>

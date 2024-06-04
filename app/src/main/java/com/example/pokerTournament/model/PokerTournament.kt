@@ -4,7 +4,7 @@ import com.example.pokerTournament.R
 
 data class PokerTournament(
     var id: Int,
-    var name: String,
+    val name: String,
     val playersMax: Int,
     val description: String,
     val ante: Boolean,

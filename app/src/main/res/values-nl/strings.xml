@@ -14,10 +14,19 @@
     <string name="levels">levels</string>
     <string name="new_tournament">Nieuw toernooi</string>
     <string name="name">Naam</string>
-    <string name="add">Add</string>
-    <string name="cancel">Cancel</string>
-    <string name="exceeding_max_length">Exceeding max length</string>
+    <string name="add">Voeg toe</string>
+    <string name="cancel">Stop</string>
+    <string name="exceeding_max_length">Over max lengte</string>
     <string name="rotationy">rotationY</string>
     <string name="alpha">alpha</string>
-    <string name="add_new_tournament">Add New Tournament</string>
+    <string name="add_new_tournament">Voeg nieuw toernooi toe</string>
+    <string name="details_poker_tournament">Details pokertoernooi</string>
+    <string name="list_pokertournaments_screen">Lijst pokertoernooi scherm</string>
+    <string name="details_pokertournaments_screen">Details pokertoernooi scherm</string>
+    <string name="pokahnights">Pokahnights</string>
+    <string name="tournament">Toernooi</string>
+    <string name="expand_button">Vergroot knop</string>
+    <string name="edit">Verander</string>
+    <string name="add_pokertournament">Voeg pokertoernooi toe</string>
+    <string name="edit_pokertournament">Verander pokertoernooi</string>
 </resources>
