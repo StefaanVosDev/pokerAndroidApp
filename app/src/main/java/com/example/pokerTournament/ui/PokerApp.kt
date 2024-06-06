@@ -43,7 +43,7 @@ import com.example.pokerTournament.ui.screens.ListOfPokerTournamentsScreen
 import com.example.pokerTournament.ui.screens.SettingsScreen
 
 
-enum class PokerScreen(@StringRes val title: Int) {
+enum class PokerApp(@StringRes val title: Int) {
     Start(title = R.string.pokahnights),
     DetailsPokerTournament(title = R.string.tournament),
     Settings(title = R.string.settings)
@@ -53,7 +53,7 @@ enum class PokerScreen(@StringRes val title: Int) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PokerTopAppBar(
-    currentScreen: PokerScreen,
+    currentScreen: PokerApp,
     navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
@@ -92,7 +92,7 @@ fun PokerTopAppBar(
         },
 
         actions = {
-            IconButton(onClick = { navController.navigate(route = PokerScreen.Settings.name) }) {
+            IconButton(onClick = { navController.navigate(route = PokerApp.Settings.name) }) {
                 Icon(
                     imageVector = Icons.Filled.Settings,
                     contentDescription = stringResource(id = R.string.settings)
@@ -115,8 +115,8 @@ fun PokerPage(
 
     val backStackEntry by navController.currentBackStackEntryAsState()
 
-    val currentRoute = backStackEntry?.destination?.route?.substringBefore("/{id}") ?: PokerScreen.Start.name
-    val currentScreen = PokerScreen.valueOf(currentRoute)
+    val currentRoute = backStackEntry?.destination?.route?.substringBefore("/{id}") ?: PokerApp.Start.name
+    val currentScreen = PokerApp.valueOf(currentRoute)
 
 
     Scaffold(
@@ -130,20 +130,20 @@ fun PokerPage(
 
         NavHost(
             navController = navController,
-            startDestination = PokerScreen.Start.name,
+            startDestination = PokerApp.Start.name,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
-            composable(route = PokerScreen.Start.name) {
+            composable(route = PokerApp.Start.name) {
                 ListOfPokerTournamentsScreen(
                     uiState = uiState,
                     viewModel = viewModel,
                     onNavigateDetailsScreen = {id ->
                         navController.navigate(
-                            "${PokerScreen.DetailsPokerTournament.name}/$id") {
+                            "${PokerApp.DetailsPokerTournament.name}/$id") {
                             launchSingleTop = true
-                            popUpTo(PokerScreen.Start.name) {
+                            popUpTo(PokerApp.Start.name) {
                                 inclusive = false
                             }
                         }
@@ -151,7 +151,7 @@ fun PokerPage(
                 )
             }
             composable(
-                route = "${PokerScreen.DetailsPokerTournament.name}/{id}",
+                route = "${PokerApp.DetailsPokerTournament.name}/{id}",
                 arguments = listOf(navArgument("id") { type = NavType.IntType })
             ) { backStackEntry ->
                 val id = backStackEntry.arguments?.getInt("id") ?: 1
@@ -171,7 +171,7 @@ fun PokerPage(
                         .fillMaxSize()
                 )
             }
-            composable(route = PokerScreen.Settings.name) {
+            composable(route = PokerApp.Settings.name) {
                 val settingsViewModel = SettingsViewModel.getInstance(appContainer.settingsRepository, context)
                 SettingsScreen(settingsViewModel)
             }
