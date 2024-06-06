@@ -11,15 +11,28 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.example.pokerTournament.ui.theme.ArtSpaceProjectTheme
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.pokerTournament.data.SettingsRepository
+import com.example.pokerTournament.model.SettingsViewModel
+import com.example.pokerTournament.ui.PokerPage
+import dagger.hilt.android.AndroidEntryPoint
 
 private const val TAG = "MainActivity"
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    private lateinit var preferencesRepository: SettingsRepository
+    private lateinit var defaultSettingsModel: SettingsViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d(TAG, "onCreate: called")
         super.onCreate(savedInstanceState)
+
+        preferencesRepository = SettingsRepository(this)
+        defaultSettingsModel = SettingsViewModel(preferencesRepository, this)
+
         setContent {
-            ArtSpaceProjectTheme {
+            ArtSpaceProjectTheme(
+            ) {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),

@@ -29,4 +29,15 @@
     <string name="edit">Edit</string>
     <string name="add_pokertournament">Add PokerTournament</string>
     <string name="edit_pokertournament">Edit PokerTournament</string>
+    <string name="settings">Settings</string>
+    <string name="players">Players</string>
+    <string name="theme">Theme</string>
+    <string name="language">Language</string>
+    <string name="light">Light</string>
+    <string name="english">English</string>
+    <string name="dark">Dark</string>
+    <string name="dutch">Dutch</string>
+    <string name="theme_change_disclaimer">Note: The theme will only change upon restarting the application.</string>
+    <string name="loading">Loading</string>
+    <string name="delete_pokertournament">Delete PokerTournament</string>
 </resources>

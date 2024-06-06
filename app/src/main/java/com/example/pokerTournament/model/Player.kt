@@ -1,7 +1,10 @@
 package com.example.pokerTournament.model
 
-import com.example.pokerTournament.R
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
+@SerialName("Player")
 data class Player(
     val id: Int,
     val name: String,
@@ -9,120 +12,7 @@ data class Player(
     val liveEarnings: Double,
     val dateOfBirth: String,
     val wsopBracelets: Int,
-    val imageResourceId: Int,
+    val image: String,
     val married: Boolean,
     val pokerTournamentId: Int
-)
-
-val Players = listOf(
-    Player(
-        id = 1,
-        name = "Daniel Negreanu",
-        nickname = "Kid Poker",
-        liveEarnings = 52628149.50,
-        dateOfBirth = "1974-07-26",
-        wsopBracelets = 6,
-        imageResourceId = R.drawable.daniel_negreanu_2007,
-        married = true,
-        pokerTournamentId = 5
-    ),
-    Player(
-        id = 2,
-        name = "Phil Hellmuth",
-        nickname = "The Poker Brat",
-        liveEarnings = 26735185.42,
-        dateOfBirth = "1964-07-16",
-        wsopBracelets = 17,
-        imageResourceId = R.drawable.phil_hellmuth_2021,
-        married = true,
-        pokerTournamentId = 5
-    ),
-    Player(
-        id = 3,
-        name = "Doyle Brunson",
-        nickname = "Texas Dolly",
-        liveEarnings = 6176737.63,
-        dateOfBirth = "1933-05-14",
-        wsopBracelets = 10,
-        imageResourceId = R.drawable.doyle_brunson,
-        married = true,
-        pokerTournamentId = 3
-    ),
-    Player(
-        id = 4,
-        name = "Phil Ivey",
-        nickname = "Tiger Woods of Poker",
-        liveEarnings = 42556045.65,
-        dateOfBirth = "1977-02-01",
-        wsopBracelets = 10,
-        imageResourceId = R.drawable.phil_ivey_2009,
-        married = false,
-        pokerTournamentId = 6
-    ),
-    Player(
-        id = 5,
-        name = "Erik Seidel",
-        nickname = "Sly, Seiborg",
-        liveEarnings = 47515285.12,
-        dateOfBirth = "1959-11-06",
-        wsopBracelets = 10,
-        imageResourceId = R.drawable.erik_seidel_2018,
-        married = true,
-        pokerTournamentId = 7
-    ),
-    Player(
-        id = 6,
-        name = "Jason Mercier",
-        nickname = "Treysfull21",
-        liveEarnings = 20696578.73,
-        dateOfBirth = "1986-11-12",
-        wsopBracelets = 6,
-        imageResourceId = R.drawable.jason_mercier,
-        married = false,
-        pokerTournamentId = 9
-    ),
-    Player(
-        id = 7,
-        name = "Barry Greenstein",
-        nickname = "The Robin Hood of Poker",
-        liveEarnings = 8612332.61,
-        dateOfBirth = "1954-12-30",
-        wsopBracelets = 3,
-        imageResourceId = R.drawable.barry_greenstein,
-        married = true,
-        pokerTournamentId = 10
-    ),
-    Player(
-        id = 8,
-        name = "Phil Laak",
-        nickname = "The Unabomber",
-        liveEarnings = 3909419.98,
-        dateOfBirth = "1972-09-08",
-        wsopBracelets = 1,
-        imageResourceId = R.drawable.phil_the_unabomber_laak,
-        married = true,
-        pokerTournamentId = 4
-    ),
-    Player(
-        id = 9,
-        name = "Antanas Guoga",
-        nickname = "Tony G",
-        liveEarnings = 10132105.18,
-        dateOfBirth = "1973-12-17",
-        wsopBracelets = 0,
-        imageResourceId = R.drawable.tony_g,
-        married = false,
-        pokerTournamentId = 1
-    ),
-    Player(
-        id = 10,
-        name = "Justin Bonomo",
-        nickname = "ZeeJustin",
-        liveEarnings = 63405741.43,
-        dateOfBirth = "1985-09-30",
-        wsopBracelets = 0,
-        imageResourceId = R.drawable.justin_bonomo_2018,
-        married = false,
-        pokerTournamentId = 12
-    )
 )

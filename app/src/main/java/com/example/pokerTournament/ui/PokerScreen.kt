@@ -1,4 +1,4 @@
-package com.example.pokerTournament
+package com.example.pokerTournament.ui
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
@@ -7,7 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -21,10 +22,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -32,14 +34,19 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.pokerTournament.R
+import com.example.pokerTournament.data.DefaultAppContainer
+import com.example.pokerTournament.model.SettingsViewModel
 import com.example.pokerTournament.model.PokerViewModel
-import com.example.pokerTournament.ui.DetailsPokerTournamentScreen
-import com.example.pokerTournament.ui.ListOfPokerTournamentsScreen
+import com.example.pokerTournament.ui.screens.DetailsPokerTournamentScreen
+import com.example.pokerTournament.ui.screens.ListOfPokerTournamentsScreen
+import com.example.pokerTournament.ui.screens.SettingsScreen
 
 
 enum class PokerScreen(@StringRes val title: Int) {
     Start(title = R.string.pokahnights),
-    DetailsPokerTournament(title = R.string.tournament)
+    DetailsPokerTournament(title = R.string.tournament),
+    Settings(title = R.string.settings)
 }
 
 
@@ -64,7 +71,7 @@ fun PokerTopAppBar(
                 )
                 Text(
                     text = stringResource(currentScreen.title),
-                    style = MaterialTheme.typography.displayMedium,
+                    style = MaterialTheme.typography.displaySmall,
                     color = MaterialTheme.colorScheme.primary
                 )
             }
@@ -77,10 +84,19 @@ fun PokerTopAppBar(
             if (navController.previousBackStackEntry != null) {
                 IconButton(onClick = { navController.navigateUp() }) {
                     Icon(
-                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                        imageVector = Icons.Filled.ArrowBack,
                         contentDescription = "Back"
                     )
                 }
+            }
+        },
+
+        actions = {
+            IconButton(onClick = { navController.navigate(route = PokerScreen.Settings.name) }) {
+                Icon(
+                    imageVector = Icons.Filled.Settings,
+                    contentDescription = stringResource(id = R.string.settings)
+                )
             }
         }
     )
@@ -89,9 +105,12 @@ fun PokerTopAppBar(
 
 @Composable
 fun PokerPage(
-    viewModel: PokerViewModel = viewModel(),
-    navController: NavHostController = rememberNavController()
+    navController: NavHostController = rememberNavController(),
+    viewModel: PokerViewModel = hiltViewModel()
 ) {
+    val context = LocalContext.current
+    val appContainer = DefaultAppContainer(context)
+
     val uiState by viewModel.uiState.collectAsState()
 
     val backStackEntry by navController.currentBackStackEntryAsState()
@@ -128,7 +147,7 @@ fun PokerPage(
                                 inclusive = false
                             }
                         }
-                    },
+                    }
                 )
             }
             composable(
@@ -151,6 +170,10 @@ fun PokerPage(
                     modifier = Modifier
                         .fillMaxSize()
                 )
+            }
+            composable(route = PokerScreen.Settings.name) {
+                val settingsViewModel = SettingsViewModel.getInstance(appContainer.settingsRepository, context)
+                SettingsScreen(settingsViewModel)
             }
         }
     }

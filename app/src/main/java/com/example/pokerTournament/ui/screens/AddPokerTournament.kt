@@ -1,4 +1,4 @@
-package com.example.pokerTournament.ui
+package com.example.pokerTournament.ui.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -101,7 +101,7 @@ fun AddTournamentDialog(
                             levels = levels,
                             startingStack = startingStack.toInt(),
                             ante = ante,
-                            imageResourceId = R.drawable.ic_launcher_background
+                            imageResourceId = R.drawable.ic_launcher_background.toString()
                         )
                     )
                     onDismiss()

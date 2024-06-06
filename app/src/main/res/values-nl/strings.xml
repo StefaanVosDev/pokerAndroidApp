@@ -3,9 +3,9 @@
     <string name="previous">Vorige</string>
     <string name="update">Bijwerken</string>
     <string name="next">Volgende</string>
-    <string name="max_players">Max spelers: </string>
-    <string name="current_players">Huidige spelers: </string>
-    <string name="starting_stack">Start stack: </string>
+    <string name="max_players">Max spelers</string>
+    <string name="current_players">Huidige spelers</string>
+    <string name="starting_stack">Start stack</string>
     <string name="enter_name_max_characters">Input naam (Max %1$s karakters)</string>
     <string name="create">creër</string>
     <string name="delete">verwijder</string>
@@ -29,4 +29,15 @@
     <string name="edit">Verander</string>
     <string name="add_pokertournament">Voeg pokertoernooi toe</string>
     <string name="edit_pokertournament">Verander pokertoernooi</string>
+    <string name="settings">Instellingen</string>
+    <string name="players">Spelers</string>
+    <string name="theme">Thema</string>
+    <string name="language">Taal</string>
+    <string name="light">Licht</string>
+    <string name="english">Engels</string>
+    <string name="dark">Duister</string>
+    <string name="dutch">Nederlands</string>
+    <string name="theme_change_disclaimer">Opmerking: Het thema verandert alleen bij het opnieuw opstarten van de applicatie.</string>
+    <string name="loading">Aant het laden</string>
+    <string name="delete_pokertournament">Delete PokerTournament</string>
 </resources>

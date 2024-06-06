@@ -1,4 +1,4 @@
-package com.example.pokerTournament.ui
+package com.example.pokerTournament.ui.screens
 
 import android.annotation.SuppressLint
 import androidx.compose.animation.core.animateFloatAsState
@@ -22,11 +22,11 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.automirrored.filled.ArrowForward
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material.icons.filled.Save
+import androidx.compose.material.icons.filled.Send
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -47,7 +47,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
@@ -56,6 +55,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import coil.compose.rememberAsyncImagePainter
 import com.example.pokerTournament.R
 import com.example.pokerTournament.data.PokerTournamentUiState
 import com.example.pokerTournament.model.Player
@@ -68,31 +69,30 @@ import com.example.pokerTournament.model.PokerViewModel
 fun DetailsPokerTournamentScreen(
     id: Int,
     uiState: List<PokerTournamentUiState>,
-    viewModel: PokerViewModel,
+    modifier: Modifier = Modifier,
+    viewModel: PokerViewModel = hiltViewModel(),
     onDeleteClick: (PokerTournament) -> Unit,
     onEditClick: (Int) -> Unit,
-    onSave: (PokerTournament) -> Unit,
-    modifier: Modifier = Modifier,
-    ) {
+    onSave: (PokerTournament) -> Unit
+) {
     var currentId by rememberSaveable { mutableIntStateOf(id) }
     val currentUiState = uiState.first { it.pokerTournament.id == currentId }
 
-    val players = remember(currentId) { viewModel.getPlayersByTournamentId(currentId) }
+    val players = viewModel.playersList.value
+
+    LaunchedEffect(currentId) {
+        viewModel.getPlayersListByPokerTournamentId(currentId)
+
+    }
     var showDialog by remember { mutableStateOf(false) }
 
     val pokerTournament = currentUiState.pokerTournament
 
-    var image by rememberSaveable { mutableIntStateOf(pokerTournament.imageResourceId) }
     var name by rememberSaveable { mutableStateOf(pokerTournament.name) }
     var playersMax by rememberSaveable { mutableIntStateOf(pokerTournament.playersMax) }
     var startingStack by rememberSaveable { mutableIntStateOf(pokerTournament.startingStack) }
     var levels by rememberSaveable { mutableStateOf(pokerTournament.levels) }
     var ante by rememberSaveable { mutableStateOf(pokerTournament.ante) }
-
-
-    LaunchedEffect(pokerTournament) {
-        image = pokerTournament.imageResourceId
-    }
 
     if (showDialog) {
         AddTournamentDialog(
@@ -117,8 +117,7 @@ fun DetailsPokerTournamentScreen(
             Spacer(modifier = Modifier.height(8.dp))
 
             FlippableCard(
-                image,
-                pokerTournament.description,
+                pokerTournament,
                 currentId
             )
 
@@ -178,7 +177,7 @@ fun DetailsPokerTournamentScreen(
                     )
                 }
             } else {
-                TournamentInfoText(viewModel, currentId)
+                TournamentInfoText(pokerTournament, players.size)
             }
 
             if (players.isNotEmpty()) {
@@ -205,7 +204,7 @@ fun DetailsPokerTournamentScreen(
                     colors = ButtonDefaults.buttonColors()
                 ) {
                     Icon(
-                        Icons.AutoMirrored.Filled.ArrowBack,
+                        Icons.Filled.ArrowBack,
                         contentDescription = stringResource(id = R.string.previous)
                     )
                 }
@@ -226,7 +225,7 @@ fun DetailsPokerTournamentScreen(
                         colors = ButtonDefaults.buttonColors()
                     ) {
                         Icon(
-                            Icons.Filled.Save,
+                            Icons.Filled.Send,
                             contentDescription = stringResource(id = R.string.update)
                         )
                     }
@@ -250,13 +249,13 @@ fun DetailsPokerTournamentScreen(
                     colors = ButtonDefaults.buttonColors()
                 ) {
                     Icon(
-                        Icons.AutoMirrored.Filled.ArrowForward,
+                        Icons.Filled.ArrowForward,
                         contentDescription = stringResource(id = R.string.next)
                     )
                 }
                 Button(
                     onClick =  {
-                        onDeleteClick(viewModel.getPokerTournamentById(currentId))
+                        onDeleteClick(pokerTournament)
                         currentId = viewModel.findPreviousId(currentId)
                                },
                     colors = ButtonDefaults.buttonColors()
@@ -269,49 +268,41 @@ fun DetailsPokerTournamentScreen(
 }
 
 @Composable
-fun TournamentInfoText(pokerViewModel: PokerViewModel, currentId: Int) {
+fun TournamentInfoText(pokerTournament: PokerTournament, currentPlayers: Int) {
     Text(
-        text = "Name: " + pokerViewModel.getPokerTournamentById(currentId).name,
+        text = stringResource(id = R.string.name) +" : " + pokerTournament.name,
         style = MaterialTheme.typography.titleLarge,
         modifier = Modifier.padding(vertical = 4.dp),
         color = MaterialTheme.colorScheme.onSurface
     )
     Text(
-        text = stringResource(id = R.string.max_players) + ": " + pokerViewModel.getPokerTournamentById(
-            currentId
-        ).playersMax,
+        text = stringResource(id = R.string.max_players) + ": " + pokerTournament.playersMax,
         style = MaterialTheme.typography.bodyLarge,
         modifier = Modifier.padding(vertical = 4.dp),
         color = MaterialTheme.colorScheme.onSurface
     )
     Text(
-        text = stringResource(id = R.string.current_players) + ": " + pokerViewModel.getPlayersByTournamentId(
-            currentId
-        ).size,
+        text = stringResource(id = R.string.current_players) + ": " + currentPlayers,
         style = MaterialTheme.typography.bodyLarge,
         modifier = Modifier.padding(vertical = 4.dp),
         color = MaterialTheme.colorScheme.onSurface
     )
     Text(
-        text = stringResource(id = R.string.starting_stack) + ": " + pokerViewModel.getPokerTournamentById(
-            currentId
-        ).startingStack,
+        text = stringResource(id = R.string.starting_stack) + ": " + pokerTournament.startingStack,
         style = MaterialTheme.typography.bodyLarge,
         modifier = Modifier.padding(vertical = 4.dp),
         color = MaterialTheme.colorScheme.onSurface
     )
     Text(
-        text = stringResource(id = R.string.levels) + ": " + pokerViewModel.getPokerTournamentById(
-            currentId
-        ).levels,
+        text = stringResource(id = R.string.levels) + ": " + pokerTournament.levels,
         style = MaterialTheme.typography.bodyLarge,
         modifier = Modifier.padding(vertical = 4.dp),
         color = MaterialTheme.colorScheme.onSurface
     )
     Text(
         text = stringResource(id = R.string.ante) + ": " +
-                 if (pokerViewModel.getPokerTournamentById(currentId)
-                .ante) "Yes" else "No",
+                 if (pokerTournament.ante)
+                     "Yes" else "No",
         style = MaterialTheme.typography.bodyLarge,
         modifier = Modifier.padding(vertical = 4.dp),
         color = MaterialTheme.colorScheme.onSurface
@@ -322,7 +313,7 @@ fun TournamentInfoText(pokerViewModel: PokerViewModel, currentId: Int) {
 @Composable
 fun PlayerItem(player: Player) {
 
-    val image = player.imageResourceId
+    val image = player.image
 
     Card(
         modifier = Modifier
@@ -337,7 +328,7 @@ fun PlayerItem(player: Player) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
-                painter = painterResource(image),
+                painter = rememberAsyncImagePainter(image),
                 contentDescription = null,
                 modifier = Modifier
                     .size(64.dp)
@@ -347,12 +338,12 @@ fun PlayerItem(player: Player) {
                 Text(
                     text = player.name,
                     style = MaterialTheme.typography.titleLarge,
-                    color = Color.Black
+                    color = MaterialTheme.colorScheme.onSurface
                 )
                 Text(
                     text = player.nickname,
                     style = MaterialTheme.typography.titleSmall,
-                    color = Color.Gray
+                    color = MaterialTheme.colorScheme.onSurface
                 )
             }
         }
@@ -361,7 +352,7 @@ fun PlayerItem(player: Player) {
 
 
 @Composable
-fun FlippableCard(image: Int, description: String, currentId: Int) {
+fun FlippableCard(pokerTournament: PokerTournament, currentId: Int) {
     var isFlipped by remember { mutableStateOf(false) }
     val editedRotation by animateFloatAsState(
         targetValue = if (isFlipped) 180f else 0f,
@@ -383,7 +374,7 @@ fun FlippableCard(image: Int, description: String, currentId: Int) {
     ) {
         Box {
             Image(
-                painter = painterResource(image),
+                painter = rememberAsyncImagePainter(pokerTournament.imageResourceId),
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxSize()
@@ -394,7 +385,7 @@ fun FlippableCard(image: Int, description: String, currentId: Int) {
             )
             if (isFlipped) {
                 Text(
-                    text = description,
+                    text = pokerTournament.description,
                     modifier = Modifier
                         .fillMaxSize()
                         .align(Alignment.Center),
